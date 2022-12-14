@@ -1,0 +1,16 @@
+도서관리 프로그램
+ 필요 기능
+ - 도서 등록, 수정, 삭제 기능
+  -. 등록 기능 : add()
+  -. 수정 기능 : replace()
+  -. 삭제 기능 : remove()
+  -. 등록 시 필요 항목(멤버 변수) : 도서명, 출판사, 저자, 도서 일련번호, 도서의 대출 가능일 수
+    ArrayList
+    String bookName;
+    String publisher;
+    String author;
+    long serialNum;
+    int bookRentPossibleDate;
+
+ - 조회 기능 : get()
+ - 

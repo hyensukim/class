@@ -1,0 +1,145 @@
+12.08
+복습
+지네릭스
+1. 타입 매개변수 -> 제거 -> Object 타입 : 컴파일시
+ - T extends Fruit : Fruit 상한제한, 하위클래스 사용 가능하다.
+  -. 타입 매개변수 -> 제거 -> Fruit : 컴파일시
+
+ - 실 사용시 : 인스턴스 생성(객체 생성) -> 형변환 -> Object -> Apple
+ - static 요소(변수, 메서드) : 지네릭 타입 매개변수 X
+ - 배열 X
+
+2. 와일드 카드
+ - ? == Object
+ - 모든 제한 없이 사용가능.
+ - ? extends T : 상한 제한, T를 포함한 하위 클래스만 사용 가능.
+ - ? super T : 하한 제한, T를 포함한 상위 클래스만 사용 가능. 
+
+==================================================
+열거형(enum)
+
+1.열거형이란?
+
+2. 열거형 정의와 사용
+ - Enum
+enum 클래스명 {
+	상수1, // enum 클래스명의 정적 상수 객체
+	상수2,
+	상수3
+}
+비밀 2가지
+ 1) 생성자 -> private
+ 2) 추상클래스
+
+3. 모든 열거형의 상위 클래스?
+ - java.lang.Enum의 하위 클래스
+  -. String name() : 상수 이름의 문자열
+  -. int ordinal() :  상수의 순서 번호
+  -. static E valueOf(String name)
+
+4. 컴파일러가 자동으로 추가해주는 메서드
+ - static E values()
+ - 
+
+5. 이넘 클래스의 비밀
+ - 추상 클래스
+ - 객체를 내부에서만 생성 가능하다.
+
+===========================================================================
+애너테이션(Annotation)
+1. 애너테이션이란?
+ - 주석, 주해 = 설명
+ - @... // 기능이 아니라 설명이다.
+ - 개발자 실수 방지
+
+2. 표준 애너테이션
+
+3. 메타 애너테이션
+ - 애너테이션을 만들어주는 애너테이션
+ - @Target 
+  -. 애너테이션이 적용될 범위 ex) @Override -> 메서드만 가능
+ - @Retention
+  -. SOURCE : 컴파일 기간에만 유지되는 정책 -> 컴파일러에게 정보 전달이 목적.
+  -. CLASS : 기본값, 컴파일 후까지 유지, 실행중에는 유지 X, 제거 -> 사용 빈도가 적다.
+  -. RUNTIME : 실행 중에 유지되는 정책 -> 사용 빈도가 가장 많다.
+
+애노테이션 내부
+ - 타입 매개변수 X(지네릭)
+ - 매개변수가 있는 추상메서드 정의 X
+
+package day21.sub02;
+// 기능이 제한된 인터페이스 이다.
+import java.lang.annotation.*;
+import static java.lang.annotation.ElementType.*;
+
+@Target({METHOD,TYPE,FIELD,TYPE_USE})
+@Retention(RetentionPolicy.RUNTIME)// RetentionPolicy - 기본형으로 CLASS를 주나, 거의 사용하지 않음.
+public @interface MyAnno {
+	int num = 10; // 상수는 가능.
+	String value();
+	//매개변수가 있는 추상메서드는 사용 불가함.
+//	int num(int num1, int num2);
+	int num();
+	int num1() default 10; // default 10값을 넣어줄 경우에는 별도로 값을 넣지 않아도 된다.
+	String[] value2() default {"값1", "값2"}; // 배열도 사용이 가능하다.
+}
+
+package day21.sub02;
+
+import java.lang.annotation.*;
+@MyAnno(value = "값",num = 10)
+public class Ex03 {
+
+	int num;
+	
+//	@MyAnno
+//	String name;
+	
+
+	Ex02 name;
+	
+
+	public static void main(String[] args) {
+		Annotation anno = Ex03.class.getAnnotation(MyAnno.class);
+		MyAnno ann = (MyAnno)anno;
+		String[] values = ann.value2();
+		System.out.println(java.util.Arrays.toString(values));
+	}
+
+	public static void print( String name) {//매개변수 : TYPE_USE
+		
+	}
+
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
