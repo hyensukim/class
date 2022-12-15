@@ -1,0 +1,144 @@
+Optional.of("값") : null 값, 예외
+Optional.ofNullable("값"); : null 값, 예외 X
+ - get() : 내부에 있는 value 값을 가져오는 메서드
+ - orElse("기본값") : 값이 null일 때 기본값으로 대체.
+ - orElseGet(Supplier ...)
+ - orElseThrow(Supplier ...)
+ - isPresent() : 값이 있는지 확인
+ - isEmpty()  
+OptionalInt
+ - getAsInt
+OptionalLong
+ - getAsLong
+OptionalDouble
+ - getAsDouble
+
+11. 스트림의 최종 연산
+
+4) 리듀싱
+ - reduce() : 스트림의 요소를 줄여나가면서 연산을 수행하고 최종결과를 반환함.
+ - 매개변수의 타입은 BinaryOperator이다. 반환형 == 매개변수형
+
+-> 다시 봐보기
+count()
+max()
+min()
+sum()
+
+5) ★collect()
+ java.util.stream.Collectors // Collector 인터페이스의 유용한 기능.
+ - 스트림 -> 컬렉션 프레임워크 변환
+ - toList()
+ - toSet()
+ - toMap()
+ - toCollection() /ArrayList, HashSet
+ - joining()
+ - partitioningBy
+  -. 2개로 분할
+ - groupingBy
+  -. 특정 기준값으로 분할
+Collection
+ List : 순차자료구조
+ - 중복 가능, 순서가 유지되는 자료구조(배열)
+ Set : 집합자료구조
+ - 중복 X, 순서 유지 X
+
+Map : Dictionary K - 중복 불가, V - 중복가능
+ - 키,값의 순서쌍
+ - 순서 유지 X
+
+==================================================
+입출력(I/O)
+
+1. 자바에서의 입출력
+ 1) 입출력이란?
+  - Input(입력), Output(출력)
+ 2) 스트림(stream)
+  - 데이터 통로
+  - 입력 스트림(Input - 키보드, 네트워크)
+    출력 스트림(Output - 화면, 프린트, 파일)
+
+2. 바이트기반 스트림
+ - 1바이트 기반 스트림(데이터를 1바이트씩 주고 받는 스트림)
+ - stream으로 끝나는 클레스들은 바이트 단위이다.
+ 1) 입력 스트림
+ InputStream(상위 추상클래스)
+  - 기반 스트림
+   -. 직접 데이터에 접근하는 스트림.
+   -. ByteArrayInputStream - 메모리
+   -. FileInputStream - 파일
+    -> int read()
+	- read() 호출 시마다 1바이트씩 이동하면서 읽음.
+	- 끝까지 다 읽게되면 -1을  반환
+    -> byte -> 0 ~ 255 / unsigned + -1 -> short, int, long
+   -. FileNotFoundException
+   -. IOException(filenotfoundexception 상위)
+   -. try~catch with resource(AutoCloseable 상속받은 클래스는 모두 사용가능)
+  - 보조 스트림
+   -. 직접 데이터 접근하지 않고 기반 스트림 + 보조기능(추가기능)
+   -. 생성자 매개변수 : InputStream
+
+ 2) 출력 스트림 
+ OutputStream(상위 추상클래스)
+  - 기반 스트림
+   -. 직접 데이터에 접근하는 스트림.
+   -. ByteArrayOutputStream - 메모리
+   -. FileOutputStream - 파일
+  - 보조 스트림
+   -. 직접 데이터 접근하지 않고 기반 스트림 + 보조기능(추가기능)
+   -. 생성자 매개변수 : OutputStream
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

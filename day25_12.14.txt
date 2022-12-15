@@ -1,0 +1,92 @@
+12.14
+복습
+ - 함수형 프로그래밍(그당시 트렌드, "자바스크립트")
+  -. 함수는 단일 프로그램
+  -. 인터페이스 : 추상메서드 1개만 정의.
+  -★ 함수는 값이다. (함수 -> 함수) => 일급 함수.
+
+- 람다식 : 추상 메서드를 식으로 구현한것.
+
+- 함수형 인터페이스 내 사용하는 추상메서드들의 형식이 정형화 
+  되어 있어 이러한 메서드들을 API에서 정의해놓음. -> java.util.function 패키지.
+ 1) 반환값 O, 매개변수 X
+  - Supplier<T> -> T get()
+ 2) 반환값 X, 매개변수 1
+  - Consumer<T> -> void accept(T t)
+ 3) 반환값 O, 매개변수 1
+  - Function<T, R> -> R apply(T t)
+ 4) 반환값 O(boolean), 매개변수 1
+  - Predicate<T> -> boolean test(T t)
+ 
+- 매개변수가 2개
+ 1) 반환값 X, 매개변수 2 = BiConsumer<T U> -> void accept(T t, U u)
+ 2) 반환값 O, 매개변수 2 = BiFunction<T, U, R> -> R apply(T t, U u)
+ 3) 반환값 O(boolean), 매개변수 2 = BiPredicate<T, U> -> boolean test(T t, U u)
+
+ - 매개변수와 반환값의 자료형이 동일한 경우
+ 1) UnaryOperator<T> : Function<T, T>
+  - T apply(T t)
+ 2) BinaryOperator<T> : BiFunction<T,T,T>
+  - T apply(T t, T t)
+
+ - Wrapper 클래스형을 자료형으로 받는 경우, 기본형과 박싱, 언박싱 되어 연산이 추가돼 성능이 떨어지게 된다.
+  -. 기본형을 취급하는 인터페이스
+  -. Double + ______
+=================================================================
+스트림(Stream)
+
+1. 스트림이란?
+ - 데이터 소스에 상관없이 데이터를 추상화하여 데이터를 다루는데 자주 사용되는 메서드들을 정의함.
+ - 소스로부터 데이터를 읽을 뿐, 소스를 변경하지는 않는다.
+ - 코드가 짧아진다.
+
+2. 스트림 연산
+ 1) 중간 연산
+  - Stream 객체를 반환하는 메서드
+  - distinct()
+
+ 2) 최종 연산
+  - Stream 이외의 반환값이 있는 메서드
+  - 연산의 최종 결과를 도출하는 메서드
+  
+ 3) 지연된 연산
+  - 중간 연산은 최종 연산이 호출 되기 전까지는 실행되지 않는다. -> 최종 연산 메서드를 호출해야 실행?
+
+ 4) 기본자료형을 다루는 스트림
+  - IntStream, DoubleStream, LongStream
+
+3. 스트림 만들기(java.util.stream 패키지)
+ 1) 컬렉션(Collection)
+  - Stream stream()
+
+
+ 2) 배열(Arrays)
+  (1) Arrays.stream(T[] t) : 스트림을 나타냄.
+   - IntStream, LongStream ... -> 스트림이라는 큰 틀에서는 비슷한 클래스.
+  (2) Stream.of(...) : 객체 생성
+
+4. 특정 범위의 정수
+
+5. 임의의 수
+java.util.Random
+
+9. 스트림의 중간 연산
+ 1) 스트림 자르기 -
+ 2)
+ 3) 정렬 - sorted()
+
+보충 공부해야할 사항 -> collection framework
+ -> compareTo(TreeSet, TreeMap)
+ 4) 변환
+ 5) 조회
+ 6) Optional
+  - 1.8 이후로  -NullPointException ->Runtime 예외(실행중 발생)
+  - Wrapper class의 일종이다.
+  - Optional
+	.of("값") : null값 미허용(예외 발생)
+	.ofNullable("값") : null값 허용
+
+
+
+
+
